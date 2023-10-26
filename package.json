@@ -1,90 +1,91 @@
 {
-    "name": "generator-create-lean-jsx-app",
-    "version": "0.0.3",
-    "description": "Generate lean-jsx based web applications",
-    "homepage": "",
-    "type": "module",
-    "author": {
-        "name": "Pedro F Marquez",
-        "email": "pfernandom@gmail.com",
-        "url": "https://pedromarquez.dev"
-    },
-    "bin": {
-        "create-lean-jsx": "./index.js"
-    },
-    "files": [
-        "generators"
+  "name": "generator-create-lean-jsx-app",
+  "version": "0.0.5",
+  "description": "Generate lean-jsx based web applications",
+  "homepage": "",
+  "type": "module",
+  "author": {
+    "name": "Pedro F Marquez",
+    "email": "pfernandom@gmail.com",
+    "url": "https://pedromarquez.dev"
+  },
+  "bin": {
+    "create-lean-jsx": "./index.js"
+  },
+  "files": [
+    "generators"
+  ],
+  "main": "generators/index.js",
+  "keywords": [
+    "jsx",
+    "streaming",
+    "html",
+    "express",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "coveralls": "^3.0.7",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.6.0",
+    "eslint-config-xo": "^0.27.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "jest": "^26.1.0",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^8.1.1"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "glob": "^10.3.10",
+    "yeoman-environment": "^4.0.0",
+    "yeoman-generator": "^7.0.0",
+    "yo": "^4.3.1",
+    "yosay": "^2.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
     ],
-    "main": "generators/index.js",
-    "keywords": [
-        "jsx",
-        "streaming",
-        "html",
-        "express",
-        "yeoman-generator"
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
     ],
-    "devDependencies": {
-        "coveralls": "^3.0.7",
-        "eslint": "^6.6.0",
-        "eslint-config-prettier": "^6.6.0",
-        "eslint-config-xo": "^0.27.2",
-        "eslint-plugin-prettier": "^3.1.1",
-        "husky": "^3.0.9",
-        "jest": "^26.1.0",
-        "lint-staged": "^9.4.3",
-        "prettier": "^1.19.1",
-        "yeoman-assert": "^3.1.1",
-        "yeoman-test": "^8.1.1"
+    "env": {
+      "jest": true,
+      "node": true
     },
-    "engines": {
-        "npm": ">= 4.0.0"
+    "rules": {
+      "prettier/prettier": "error"
     },
-    "dependencies": {
-        "chalk": "^2.1.0",
-        "glob": "^10.3.10",
-        "yeoman-environment": "^4.0.0",
-        "yeoman-generator": "^7.0.0",
-        "yo": "^4.3.1",
-        "yosay": "^2.0.2"
-    },
-    "jest": {
-        "testEnvironment": "node"
-    },
-    "lint-staged": {
-        "*.js": [
-            "eslint --fix",
-            "git add"
-        ],
-        "*.json": [
-            "prettier --write",
-            "git add"
-        ]
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "eslintConfig": {
-        "extends": [
-            "xo",
-            "prettier"
-        ],
-        "env": {
-            "jest": true,
-            "node": true
-        },
-        "rules": {
-            "prettier/prettier": "error"
-        },
-        "plugins": [
-            "prettier"
-        ]
-    },
-    "scripts": {
-        "pretest": "eslint .",
-        "test": "jest"
-    },
-    "repository": "git@github.com:lean-web/lean-jsx.git",
-    "license": "MPL-2.0"
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest",
+    "testApp": "./scripts/test-generated-app.sh"
+  },
+  "repository": "git@github.com:lean-web/lean-jsx.git",
+  "license": "MPL-2.0"
 }

@@ -1,13 +1,35 @@
 #!/usr/bin/env node
 import { createEnv } from "yeoman-environment";
-const env = createEnv();
+import { parseArgs } from "node:util";
 
-env.lookup();
+const options = {
+  name: {
+    type: "string",
+    short: "n",
+  },
+  description: {
+    type: "string",
+    short: "d",
+  },
+};
 
-env.run("create-lean-jsx-app", {}, err => {
-    if (err) {
-        console.error("Error while generating:", err);
-    } else {
-        console.log("Generation complete.");
-    }
-});
+async function main() {
+  const env = createEnv();
+  const { values } = parseArgs({
+    options,
+    args: process.argv.slice(2),
+  });
+
+  await env.lookup();
+  try {
+    await env.run("create-lean-jsx-app", {
+      name: values.name,
+      description: values.description,
+    });
+    console.log("Generation complete.");
+  } catch (err) {
+    console.error("Error while generating:", err);
+  }
+}
+
+void main();
