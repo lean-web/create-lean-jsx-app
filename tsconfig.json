@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "jsx": "react-jsx", // support custom JSX
+    "jsxImportSource": "lean-jsx/lib/jsx",
+    "paths": {
+      "@/": ["./generators/app/templates/src/"],
+      "@/*": ["./generators/app/templates/src/*"]
+    }
+  },
+  "include": ["generators/**/*.ts", "generators/**/*.tsx"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

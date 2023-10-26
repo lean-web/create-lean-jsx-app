@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  color: white;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  max-width: 700px;
+  align-self: center;
+}
+
+dynamic-component {
+  display: contents;
+}
+
+:root {
+  --slow-background-color: #414141;
+}
+
+a,
+a:visited {
+  color: #7f7fff;
+}
+
+p {
+  margin-top: 0.5em;
+}
+
+.logo {
+  align-self: center;
+  width: 45%;
+}
+
+.slow-messages {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+ul.slow-messages > li {
+  width: 50%;
+}
+
+.slow-message {
+  border-radius: 0.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5em;
+  padding: 0.5em;
+  min-height: 2em;
+  background: linear-gradient(359deg, var(--slow-background-color), #616161);
+  flex-grow: 1;
+  box-shadow: inset 2px 3px 4px #2e2e2e;
+  flex-grow: 1;
+}
+
+.slow-message--large {
+  min-height: 4em;
+}
+
+.slow-message p {
+  margin: 0;
+  margin-top:0.5em;
+}
+
+ul.slow-messages > li > h2 {
+  font-size: 1em;
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
+.loading {
+  height: 2em;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  border-radius: 0.2em;
+  filter: blur(0.5px);
+  will-change: transform;
+  margin-top: 0;
+}
+
+.loading:before {
+  --gradient-start-color: #453e3e;
+  --gradient-end-color: #555454;
+  content: " ";
+  width: 200%;
+  z-index: 1;
+  animation: rolling 1s linear infinite;
+  min-height: 2em;
+  min-width: 200px;
+  display: block;
+  position: absolute;
+  overflow-x: hidden;
+  background: repeating-linear-gradient(
+    to right,
+    var(--gradient-start-color),
+    var(--gradient-end-color),
+    var(--gradient-start-color) 33.3%
+  );
+}
+
+@keyframes rolling {
+  0% {
+    transform: translateX(-33.3%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

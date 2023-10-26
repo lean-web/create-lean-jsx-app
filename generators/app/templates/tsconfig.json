@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "outDir": "./dist",
+
+    /* Bundler mode */
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    // "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+
+    "jsx": "react-jsx", // support JSX
+    "jsxImportSource": "lean-jsx/lib/jsx",
+    "paths": {
+      "@/": ["./src/"],
+      "@/*": ["./src/*"]
+    }
+    
+  },
+  "include": ["sxl.d.ts", "src", "build.cjs"]
+}
