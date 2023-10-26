@@ -6,4 +6,4 @@ npm install
 npm run build
 npx eslint .
 cd ..
-# rm -rf myapp
+rm -rf myapp

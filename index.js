@@ -2,6 +2,9 @@
 import { createEnv } from "yeoman-environment";
 import { parseArgs } from "node:util";
 
+/**
+ * @type {import("node:util").ParseArgsConfig["options"]}
+ */
 const options = {
   name: {
     type: "string",
@@ -22,7 +25,7 @@ async function main() {
 
   await env.lookup();
   try {
-    await env.run("create-lean-jsx-app", {
+    await env.run(["create-lean-jsx-app"], {
       name: values.name,
       description: values.description,
     });

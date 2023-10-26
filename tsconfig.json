@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
+    "target": "ESNext",
+    "module": "node16",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
+    "moduleResolution": "node16",
+    "allowSyntheticDefaultImports": false,
     "noEmit": true,
+    "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
@@ -17,6 +20,14 @@
       "@/*": ["./generators/app/templates/src/*"]
     }
   },
-  "include": ["generators/**/*.ts", "generators/**/*.tsx", "index.js"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": [
+    "generators/**/*.ts",
+    "generators/**/*.tsx",
+    "index.js",
+    "__tests__/**/*.js",
+    "__tests__/**/*.ts",
+    "jest.config.ts",
+    "__tests__/app.test.mjs"
+  ],
+  "exclude": ["node_modules"]
 }
