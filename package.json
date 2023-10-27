@@ -1,6 +1,6 @@
 {
-  "name": "generator-create-lean-jsx-app",
-  "version": "0.0.5",
+  "name": "generator-lean-jsx",
+  "version": "0.0.2-alpha",
   "description": "Generate lean-jsx based web applications",
   "homepage": "",
   "type": "module",
@@ -10,12 +10,12 @@
     "url": "https://pedromarquez.dev"
   },
   "bin": {
-    "create-lean-jsx": "./index.js"
+    "create-lean-jsx-app": "./index.js"
   },
   "files": [
     "generators"
   ],
-  "main": "generators/index.js",
+  "main": "generators/app/index.js",
   "keywords": [
     "jsx",
     "streaming",
@@ -53,8 +53,10 @@
     "glob": "^10.3.10",
     "yeoman-generator": "^6.0.1",
     "yeoman-test": "^8.2.0",
-    "yo": "^4.3.1",
     "yosay": "^2.0.2"
+  },
+  "peerDependencies": {
+    "yeoman-environment": "^4.0.0"
   },
   "lint-staged": {
     "*.js": [

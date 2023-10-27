@@ -2,12 +2,19 @@
 import Generator from "yeoman-generator";
 import chalk from "chalk";
 import yosay from "yosay";
+import pkg from "../../package.json" assert { type: "json" };
 
 const { blue } = chalk;
 
 export default class extends Generator {
   async prompting() {
-    this.log(yosay(`Welcome to the ${blue("create-lean-jsx-app")} generator!`));
+    this.log(
+      yosay(
+        `Welcome to the ${blue("create-lean-jsx-app")} generator v${
+          pkg.version
+        }!`
+      )
+    );
 
     const prompts = [
       {

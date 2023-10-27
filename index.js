@@ -24,6 +24,7 @@ async function main() {
   });
 
   await env.lookup();
+
   try {
     await env.run(["create-lean-jsx-app"], {
       name: values.name,
