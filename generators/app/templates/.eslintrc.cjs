@@ -22,6 +22,7 @@ module.exports = {
       "@typescript-eslint/no-unsafe-assignment": "warn",
       "@typescript-eslint/no-unsafe-argument": "warn",
       "lean-jsx/single-yield-return": "error",
+      "lean-jsx/no-outer-scope-in-handlers": "error"
     },
   };
   

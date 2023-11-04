@@ -36,9 +36,8 @@ export function App({ globalContext }: SXL.Props) {
     <main>
       <div className="logo">{logo}</div>
       <p>
-        Lean-JSX is a server-driven web framework that allows developers to
-        build web applications using JSX-like components without the typical JS
-        payload.
+        Lean-JSX is a server-driven library that allows developers to build web
+        applications using JSX-like components without the typical JS payload.
       </p>
       <p>
         Stream HTML directly to the browser and leverage asynchronous
