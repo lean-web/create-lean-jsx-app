@@ -1,6 +1,6 @@
 {
   "name": "create-lean-jsx-app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generate LeanJSX based web applications",
   "homepage": "",
   "author": {
@@ -11,17 +11,9 @@
   "bin": {
     "create-lean-jsx": "./index.js"
   },
-  "files": [
-    "templates",
-    "index.js"
-  ],
+  "files": ["templates", "index.js"],
   "main": "index.js",
-  "keywords": [
-    "jsx",
-    "streaming",
-    "html",
-    "express"
-  ],
+  "keywords": ["jsx", "streaming", "html", "express"],
   "devDependencies": {
     "chalk": "^4.1.2",
     "eslint": "^8.53.0",
@@ -41,10 +33,7 @@
     "inquirer": "^8.2.6"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "git add"]
   },
   "husky": {
     "hooks": {
