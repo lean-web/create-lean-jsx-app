@@ -1,4 +1,4 @@
-/// <reference types="lean-jsx/src/types/global" />
+/// <reference types="lean-jsx/lib/global" />
 /// <reference lib="dom" />
 
 /**

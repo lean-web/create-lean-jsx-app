@@ -1,6 +1,7 @@
 #!/bin/sh
 
-./index.js --name "myapp" -d "A lean-jsx-powered app"
+rm -rf myapp
+./index.js myapp -n "myapp" -d "A lean-jsx-powered app"
 cd myapp
 npm install
 npm run build

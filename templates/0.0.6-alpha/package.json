@@ -1,7 +1,7 @@
 {
-  "name": "<%= name %>",
+  "name": "{{ projectName }}",
   "version": "1.0.0",
-  "description": "",
+  "description": "{{ projectDescription }}",
   "type": "module",
   "scripts": {
     "build": "node ./.build/build.cjs",
@@ -22,7 +22,7 @@
     "@typescript-eslint/parser": "^6.9.0",
     "esbuild": "^0.19.4",
     "eslint": "^8.52.0",
-    "eslint-plugin-lean-jsx": "^1.0.0",
+    "eslint-plugin-lean-jsx": "^1.0.1",
     "nodemon": "^3.0.1",
     "typescript": "^5.2.2",
     "vite": "^4.4.11"
