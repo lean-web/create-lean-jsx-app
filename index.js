@@ -8,7 +8,8 @@ const chalk = require("chalk");
 
 const program = new Command();
 
-const version = "0.0.6-alpha";
+const version = "0.0.7-alpha";
+const templateVersion = "alpha";
 
 program
   .name("create-lean-jsx-app")
@@ -47,7 +48,7 @@ program
     ]);
 
     // Define the path to the template directory
-    const templateDir = path.join(__dirname, "templates", version);
+    const templateDir = path.join(__dirname, "templates", templateVersion);
 
     // Define the target directory path
     const targetDir = path.resolve(process.cwd(), projectDirectory);
