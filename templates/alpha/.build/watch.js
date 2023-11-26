@@ -1,11 +1,12 @@
-const nodemon = require("nodemon");
-const { context } = require("esbuild");
-const { resolve } = require("path");
-const { build: viteBuild } = require("vite");
-const getConfig = require("../build.cjs");
+import nodemon from "nodemon";
+import { context } from "esbuild";
+import { resolve } from "path";
+import { build as viteBuild } from "vite";
+import getConfig from "../build.js";
 
-const src = resolve(__dirname, "../", "src");
-const dist = resolve(__dirname, "../", "dist");
+const { on } = nodemon;
+const src = resolve(process.cwd(), "src");
+const dist = resolve(process.cwd(), "dist");
 
 /**
  *  * Build andthe web and server parts separately, and watch for changes:
@@ -16,7 +17,11 @@ const dist = resolve(__dirname, "../", "dist");
  */
 async function buildApp() {
   const conf = await getConfig();
-  await viteBuild({
+
+  console.log("==Building server==");
+  const esbuildContext = await context(conf.server.esbuildOptions);
+  await esbuildContext.rebuild();
+  const web = viteBuild({
     ...conf.web,
     build: {
       ...conf.web.build,
@@ -29,11 +34,11 @@ async function buildApp() {
     process.exit();
   });
 
-  console.log("==Building server==");
-  const esbuildContext = await context(conf.server.esbuildOptions);
-  esbuildContext.rebuild();
   console.log("Server built. Watching for changes...");
-  await esbuildContext.watch();
+  const server = esbuildContext.watch();
+
+  await server;
+  await web;
 
   return conf.server.main;
 }
@@ -46,18 +51,17 @@ async function startServer() {
     const main = await buildApp();
 
     setTimeout(() => {
-      nodemonServer = nodemon({
+      const nodemonServer = nodemon({
         script: main, // The main bundled server script
         ext: "js json ts tsx", // Watched extensions
-        env: { NODE_ENV: "development" }, // Environment variables
+        env: { NODE_ENV: process.env.NODE_ENV ?? "development" }, // Environment variables
         delay: 1,
         watch: main,
       });
 
-      nodemon
-        .on("start", () => {
-          console.log("Server has started");
-        })
+      on("start", () => {
+        console.log("Server has started");
+      })
         .on("quit", () => {
           console.log("Server has quit");
           process.exit();

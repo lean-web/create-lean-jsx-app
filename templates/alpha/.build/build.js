@@ -1,6 +1,6 @@
-const { build } = require("esbuild");
-const { build: viteBuild } = require("vite");
-const getConfig = require("../build.cjs");
+import { build } from "esbuild";
+import { build as viteBuild } from "vite";
+import getConfig from "../build.js";
 
 /**
  * Build the web and server parts separately:
@@ -9,6 +9,7 @@ const getConfig = require("../build.cjs");
  */
 async function buildApp() {
   const conf = await getConfig();
+
   await viteBuild(conf.web);
   await build(conf.server.esbuildOptions);
 }

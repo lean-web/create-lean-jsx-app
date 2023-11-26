@@ -29,7 +29,8 @@
     "paths": {
       "@/": ["./src/"],
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["node", "jest", "express"]
   },
-  "include": ["sxl.d.ts", "src", "build.cjs"]
+  "include": ["sxl.d.ts", "src", "build.js"]
 }

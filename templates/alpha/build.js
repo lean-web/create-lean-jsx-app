@@ -1,6 +1,8 @@
-const { resolve, basename, extname } = require("path");
-const { injectScript } = require("lean-jsx/lib/plugins/vite");
-const packageConfig = require("./package.json");
+import { resolve, basename, extname } from "path";
+import vitePlugin from "lean-jsx/lib/plugins/vite.js";
+import esbuildPlugin from "lean-jsx/lib/plugins/esbuild.js";
+import packageJSON from "./package.json" assert { type: "json" };
+const { dependencies } = packageJSON;
 
 /**
  * Main build configuration.
@@ -16,15 +18,15 @@ const packageConfig = require("./package.json");
  *
  * @returns
  */
-module.exports = async () => {
+export default () => {
   // root directory for the source code:
-  const root = resolve(__dirname, "./src");
+  const root = resolve(process.cwd(), "./src");
 
   // bundle destination directly:
-  const outDir = resolve(__dirname, "./dist");
+  const outDir = resolve(process.cwd(), "./dist");
 
   // main entry point for the server:
-  const main = resolve(__dirname, "./src/express.tsx");
+  const main = resolve(process.cwd(), "./src/express.tsx");
 
   // extension map for the bundling of server resources:
   // it uses CommonJS by default for execution in NodeJS.
@@ -32,6 +34,9 @@ module.exports = async () => {
     ".js": ".cjs",
   };
 
+  /**
+   * @type {Record<string, string>}
+   */
   const bundledOutExtensionMap = {
     ".tsx": outExtension[".js"],
     ".ts": outExtension[".js"],
@@ -45,11 +50,12 @@ module.exports = async () => {
       root,
       publicDir: resolve(root, "./web/public"),
       build: {
+        minify: false,
         outDir,
         assetsDir: "assets",
         emptyOutDir: true,
       },
-      plugins: [injectScript("lean-jsx")],
+      plugins: [vitePlugin("lean-jsx")],
     },
     // The configuration for the server part:
     server: {
@@ -58,22 +64,23 @@ module.exports = async () => {
         outDir,
         basename(main).replace(
           /\.(js|tsx?)/,
-          bundledOutExtensionMap[extname(main)]
-        )
+          bundledOutExtensionMap[extname(main)],
+        ),
       ),
       // The esbuild building configuration:
       esbuildOptions: {
         entryPoints: [main],
         platform: "node",
         bundle: true,
-        outdir: resolve(__dirname, "./dist"),
+        outdir: resolve(process.cwd(), "./dist"),
         format: "cjs",
-        external: [...Object.keys(packageConfig.dependencies)],
+        external: [...Object.keys(dependencies), "esbuild"],
         outExtension,
         loader: {
           ".png": "dataurl",
           ".svg": "text",
         },
+        plugins: [esbuildPlugin],
       },
     },
   };

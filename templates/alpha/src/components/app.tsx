@@ -4,7 +4,7 @@ import {
   DynamicMessage,
 } from "@/components/slow";
 import logo from "@/web/public/logo.svg";
-import { SXLGlobalContext } from "lean-jsx/lib/context";
+import type { SXLGlobalContext } from "lean-jsx-types/lib/context";
 
 function isJSDisabled(globalContext: SXLGlobalContext | undefined) {
   return !!globalContext && globalContext.noJS;

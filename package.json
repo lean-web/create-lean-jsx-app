@@ -15,8 +15,10 @@
   "main": "index.js",
   "keywords": ["jsx", "streaming", "html", "express"],
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
     "chalk": "^4.1.2",
-    "eslint": "^8.53.0",
+    "eslint": "^8.54.0",
     "eslint-config-prettier": "^6.6.0",
     "eslint-config-xo": "^0.27.2",
     "eslint-plugin-lean-jsx": "^1.0.1",

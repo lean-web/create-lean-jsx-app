@@ -8,7 +8,7 @@ const chalk = require("chalk");
 
 const program = new Command();
 
-const version = "0.0.7-alpha";
+const version = "0.0.9-alpha";
 const templateVersion = "alpha";
 
 program
@@ -67,7 +67,7 @@ program
       "package.json",
       "README.md",
       "src/index.html",
-      "build.cjs",
+      "build.js",
     ].map((file) => path.join(targetDir, file));
 
     const projectName = responses.projectName ?? opts.name;
@@ -89,6 +89,7 @@ program
       cwd: targetDir,
       stdio: "inherit",
     });
+
     execSync("npm install", { cwd: targetDir, stdio: "inherit" });
 
     console.log("Project generated successfully.");
