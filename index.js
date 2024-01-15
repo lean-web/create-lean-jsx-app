@@ -8,7 +8,8 @@ const chalk = require("chalk");
 
 const program = new Command();
 
-const version = "0.0.9-alpha";
+const version = "0.0.10-alpha";
+const typesVersion = "1.0.2";
 const templateVersion = "alpha";
 
 program
@@ -85,7 +86,7 @@ program
 
     // Initialize npm and install dependencies
     execSync("npm init -y", { cwd: targetDir, stdio: "inherit" });
-    execSync(`npm install lean-jsx@${version}`, {
+    execSync(`npm install lean-jsx@${version} lean-jsx-types@${typesVersion}`, {
       cwd: targetDir,
       stdio: "inherit",
     });
