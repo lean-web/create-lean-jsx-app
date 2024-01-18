@@ -8,8 +8,8 @@ const chalk = require("chalk");
 
 const program = new Command();
 
-const version = "0.0.10-alpha";
-const typesVersion = "1.0.2";
+const version = "0.0.15-alpha";
+const typesVersion = "1.0.4";
 const templateVersion = "alpha";
 
 program
@@ -62,6 +62,7 @@ program
 
     // Copy the template directory to the target directory
     fs.copySync(templateDir, targetDir);
+    fs.copySync(`${templateDir}/.gitignore`, `${targetDir}/.gitignore`);
 
     // Replace placeholders in the target directory files
     const filesToReplace = [
