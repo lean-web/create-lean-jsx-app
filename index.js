@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// @ts-check
 const { Command, Option } = require("commander");
 const inquirer = require("inquirer");
 const fs = require("fs-extra");
@@ -8,8 +9,6 @@ const chalk = require("chalk");
 
 const program = new Command();
 
-const version = "0.0.15-alpha";
-const typesVersion = "1.0.4";
 const templateVersion = "alpha";
 
 program
@@ -30,6 +29,7 @@ program
         path.resolve(process.cwd(), projectDirectory),
       )}`,
     );
+    // @ts-ignore
     const responses = await inquirer.prompt([
       {
         type: "input",
@@ -85,9 +85,15 @@ program
       fs.writeFileSync(filePath, content, "utf8");
     });
 
+    const dependencies = Object.entries(
+      JSON.parse(fs.readFileSync("./versions.json", "utf-8")),
+    )
+      .map(([depName, version]) => `${depName}@${version}`)
+      .join(" ");
+
     // Initialize npm and install dependencies
     execSync("npm init -y", { cwd: targetDir, stdio: "inherit" });
-    execSync(`npm install lean-jsx@${version} lean-jsx-types@${typesVersion}`, {
+    execSync(`npm install ${dependencies}`, {
       cwd: targetDir,
       stdio: "inherit",
     });

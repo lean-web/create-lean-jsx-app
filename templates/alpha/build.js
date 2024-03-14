@@ -1,6 +1,6 @@
 import { resolve, basename, extname } from "path";
-import vitePlugin from "lean-jsx/lib/plugins/vite.js";
-import esbuildPlugin from "lean-jsx/lib/plugins/esbuild.js";
+import vitePlugin from "lean-jsx/plugins/vite";
+import esbuildPlugin from "lean-jsx/plugins/esbuild";
 import packageJSON from "./package.json" assert { type: "json" };
 const { dependencies } = packageJSON;
 
@@ -16,7 +16,7 @@ const { dependencies } = packageJSON;
  *      a CJS file that can be executed by NodeJS.
  *      It allows us to use JSX directly on the server side.
  *
- * @returns
+ * @returns {import("lean-jsx/src/types/build").default}
  */
 export default () => {
   // root directory for the source code:

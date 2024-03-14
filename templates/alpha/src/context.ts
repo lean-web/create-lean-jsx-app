@@ -11,7 +11,7 @@ export interface RequestQueryParams {
  * We agument the global context for getting the right
  * types inside components.
  */
-declare module "lean-jsx-types/lib/context" {
+declare module "lean-jsx-types/context" {
   interface SXLGlobalContext extends RequestQueryParams {}
 }
 

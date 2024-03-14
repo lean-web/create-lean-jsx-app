@@ -1,6 +1,6 @@
 import { SlowMessage, SlowWithLoading } from "@/components/slow";
 import logo from "@/web/public/logo.svg";
-import type { SXLGlobalContext } from "lean-jsx-types/lib/context";
+import type { SXLGlobalContext } from "lean-jsx-types/context";
 
 function isJSDisabled(globalContext: SXLGlobalContext | undefined) {
   return !!globalContext && globalContext.noJS;

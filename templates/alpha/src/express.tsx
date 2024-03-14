@@ -4,7 +4,7 @@ import compression from "compression";
 import { parseQueryParams } from "@/context";
 import { App } from "@/components/app";
 import LeanEngine from "./engine";
-import { shouldCompress } from "lean-jsx/lib/server";
+import { shouldCompress } from "lean-jsx/server";
 
 /**
  * Output path for the "public" resources:
@@ -25,7 +25,7 @@ const CSP = `default-src 'none'; script-src 'self' 'unsafe-inline'; connect-src 
  */
 function createServer() {
   const logger = LeanEngine.logger({
-    defaultLogLevel: "info"
+    defaultLogLevel: "info",
   });
   const app = express();
   /**
@@ -38,8 +38,8 @@ function createServer() {
    */
   app.use(
     compression({
-      filter: shouldCompress
-    })
+      filter: shouldCompress,
+    }),
   );
 
   /**
@@ -50,8 +50,8 @@ function createServer() {
     express.static(PUBLIC_PATH, {
       index: false,
       maxAge: "30d",
-      dotfiles: "ignore"
-    })
+      dotfiles: "ignore",
+    }),
   );
 
   /**
@@ -65,9 +65,9 @@ function createServer() {
        *  the page content to the browser.
        * @returns  - the configured response
        */
-      configResponse: resp => resp.set("Content-Security-Policy", CSP),
-      globalContextParser: args => parseQueryParams(args)
-    })
+      configResponse: (resp) => resp.set("Content-Security-Policy", CSP),
+      globalContextParser: (args) => parseQueryParams(args),
+    }),
   );
 
   /**
@@ -77,14 +77,15 @@ function createServer() {
     const globalContext = parseQueryParams(req);
 
     await LeanEngine.render(
+      req,
       res
         .set("Content-Security-Policy", CSP)
         .set("Transfer-Encoding", "chunked"),
       // Return JSX component directly! :)
       <App />,
       {
-        globalContext
-      }
+        globalContext,
+      },
     );
   });
 
