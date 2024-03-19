@@ -1,8 +1,8 @@
 {
   "name": "create-lean-jsx-app",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Generate LeanJSX based web applications",
-  "homepage": "",
+  "homepage": "https://lean-web.github.io/lean-jsx/",
   "author": {
     "name": "Pedro F Marquez",
     "email": "pfernandom@gmail.com",
