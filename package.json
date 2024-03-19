@@ -1,6 +1,6 @@
 {
   "name": "create-lean-jsx-app",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Generate LeanJSX based web applications",
   "homepage": "https://lean-web.github.io/lean-jsx/",
   "author": {
@@ -26,6 +26,7 @@
     "jest": "^29.7.0",
     "lint-staged": "^9.4.3",
     "prettier": "^3.0.3",
+    "semantic-release": "^23.0.5",
     "ts-jest": "^29.1.1"
   },
   "dependencies": {
@@ -44,8 +45,16 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jest",
-    "testApp": "./scripts/test-generated-app.sh"
+    "testApp": "./scripts/test-generated-app.sh",
+    "semver": "semantic-release",
+    "semver-check": "semantic-release --verify-conditions"
   },
   "repository": "git@github.com:lean-web/lean-jsx.git",
-  "license": "MPL-2.0"
+  "license": "MPL-2.0",
+  "release": {
+    "branches": [
+      "main",
+      { "name": "alpha", "channel": "alpha", "prerelease": true }
+    ]
+  }
 }

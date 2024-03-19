@@ -1,5 +1,5 @@
 {
-  "lean-jsx": "0.0.20-alpha",
+  "lean-jsx": "0.0.21-alpha",
   "eslint-plugin-lean-jsx": "1.0.2",
-  "lean-jsx-types": "1.0.9"
+  "lean-jsx-types": "1.0.10"
 }
