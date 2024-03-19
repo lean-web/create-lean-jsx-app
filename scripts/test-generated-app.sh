@@ -5,6 +5,7 @@ rm -rf myapp
 cd myapp
 npm install
 npm run build
+ls -la
 npx eslint .
 cd ..
 rm -rf myapp

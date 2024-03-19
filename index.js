@@ -54,6 +54,8 @@ program
     // Define the target directory path
     const targetDir = path.resolve(process.cwd(), projectDirectory);
 
+    const versionsPath = path.join(__dirname, "versions.json");
+
     // Ensure the target directory exists and is empty
     if (fs.existsSync(targetDir)) {
       console.error(`The directory ${targetDir} already exists.`);
@@ -62,7 +64,15 @@ program
 
     // Copy the template directory to the target directory
     fs.copySync(templateDir, targetDir);
-    fs.copySync(`${templateDir}/.gitignore`, `${targetDir}/.gitignore`);
+    const dotfiles = [
+      "gitignore",
+      "eslintignore",
+      "eslintrc.cjs",
+      "prettierrc",
+    ];
+    for (const dofile of dotfiles) {
+      fs.renameSync(`${targetDir}/${dofile}`, `${targetDir}/.${dofile}`);
+    }
 
     // Replace placeholders in the target directory files
     const filesToReplace = [
@@ -86,7 +96,7 @@ program
     });
 
     const dependencies = Object.entries(
-      JSON.parse(fs.readFileSync("./versions.json", "utf-8")),
+      JSON.parse(fs.readFileSync(versionsPath, "utf-8")),
     )
       .map(([depName, version]) => `${depName}@${version}`)
       .join(" ");
